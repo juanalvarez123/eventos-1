@@ -1,0 +1,34 @@
+<h1>Eventos</h1>
+
+<table>
+  <tr>
+    <td><strong>ID</strong></td>
+    <td><strong>Nombre</strong></td>
+    <td><strong>Categoría</strong></td>
+    <td><strong>Lugar</strong></td>
+    <td><strong>Dirección</strong></td>
+    <td><strong>Tipo</strong></td>
+    <td><strong>Inicia</strong></td>
+    <td><strong>Finaliza</strong></td>
+    <td><strong>Ver</strong></td>
+    <td><strong>Editar</strong></td>
+    <td><strong>Borrar</strong></td>
+  </tr>
+  <% @events.each do |event| %>
+    <tr>
+      <td><%= event.id %></td>
+      <td><%= event.name %></td>
+      <td><%= event.category %></td>
+      <td><%= event.location %></td>
+      <td><%= event.address %></td>
+      <td><%= event.event_type %></td>
+      <td><%= event.date_init %></td>
+      <td><%= event.date_end %></td>
+      <td><%= link_to 'Ver', event_path(event) %></td>
+      <td>Editar</td>
+      <td>Borrar</td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'Nuevo evento', new_event_path %>

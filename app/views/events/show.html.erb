@@ -1,0 +1,35 @@
+<h1>Detalle del evento</h1>
+
+<p>
+  ID: <%= @event.id %>
+</p>
+
+<p>
+  Nombre: <%= @event.name %>
+</p>
+
+<p>
+  Categoría: <%= @event.category %>
+</p>
+
+<p>
+  Lugar: <%= @event.location %>
+</p>
+
+<p>
+  Dirección: <%= @event.address %>
+</p>
+
+<p>
+  Tipo: <%= @event.event_type %>
+</p>
+
+<p>
+  Inicia: <%= @event.date_init %>
+</p>
+
+<p>
+  Finaliza: <%= @event.date_end %>
+</p>
+
+<%= link_to 'Regresar', events_path %>
