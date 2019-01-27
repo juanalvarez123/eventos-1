@@ -1,0 +1,47 @@
+<h1>Editar evento</h1>
+<p>Edita los datos del evento <%= @event.id %></p>
+
+<%= form_with scope: :event, url: event_path, method: :put, local: true do |form| %>
+
+  <p>
+    <%= form.label :name, 'Nombre:' %><br />
+    <%= form.text_field :name %>
+  </p>
+
+  <p>
+    <%= form.label :category, 'Categoría:' %><br />
+    <%= form.select :category, @categories %>
+  </p>
+
+  <p>
+    <%= form.label :location, 'Lugar:' %><br />
+    <%= form.text_field :location %>
+  </p>
+
+  <p>
+    <%= form.label :address, 'Dirección:' %><br />
+    <%= form.text_field :address %>
+  </p>
+
+  <p>
+    <%= form.label :event_type, 'Tipo:' %><br />
+    <%= form.select :event_type, @types %>
+  </p>
+
+  <p>
+    <%= form.label :date_init, 'Inicia:' %><br />
+    <%= form.date_field :date_init %>
+  </p>
+
+  <p>
+    <%= form.label :date_end, 'Finaliza:' %><br />
+    <%= form.date_field :date_end %>
+  </p>
+
+  <p>
+    <%= form.submit 'Editar evento' %>
+  </p>
+
+<% end %>
+
+<%= link_to 'Regresar', events_path %>
