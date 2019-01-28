@@ -4,28 +4,50 @@ class EventsController < ApplicationController
   @@types = Array['Presencial', 'Virtual']
 
   def index
-    @events = Event.all.sort { |a, b| b.created_at <=> a.created_at }
+    if session[:current_user_id]
+      @user = User.find(session[:current_user_id])
+      @events = Event.all.where(user_id: session[:current_user_id]).sort { |a, b| b.created_at <=> a.created_at }
+    else
+      redirect_to login_path
+    end
   end
 
   def new
-    @categories = @@categories
-    @types = @@types
+    if session[:current_user_id]
+      @categories = @@categories
+      @types = @@types
+    else
+      redirect_to login_path
+    end
   end
 
   def create
-    @event = Event.new(eventParameters)
-    @event.save
-    redirect_to @event
+    if session[:current_user_id]
+      @event = Event.new(eventParameters)
+      @event.user_id = session[:current_user_id]
+      @event.save
+      redirect_to @event
+    else
+      redirect_to login_path
+    end
   end
 
   def show
-    @event = Event.find(params[:id])
+    if session[:current_user_id]
+      @event = Event.find(params[:id])
+    else
+      redirect_to login_path
+    end
   end
 
   def edit
-    @categories = @@categories
-    @types = @@types
-    @event = Event.find(params[:id])
+    if session[:current_user_id]
+      @categories = @@categories
+      @types = @@types
+      @event = Event.find(params[:id])
+    else
+      redirect_to login_path
+    end
   end
 
   def update
