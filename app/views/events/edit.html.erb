@@ -3,6 +3,19 @@
 
 <%= form_with scope: :event, url: event_path, method: :put, local: true do |form| %>
 
+  <% if @event.errors.any? %>
+    <div id="error_explanation" style="color: red">
+      <h2>
+        Hay <%= @event.errors.count %> <%= @event.errors.count.equal?(1) ? "error" : "errores" %> en el formulario:
+      </h2>
+      <ul>
+        <% @event.errors.messages.each do |attr, msg| %>
+          <li><%= msg[0] %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <p>
     <%= form.label :name, 'Nombre:' %><br />
     <%= form.text_field :name %>
@@ -29,12 +42,12 @@
   </p>
 
   <p>
-    <%= form.label :date_init, 'Inicia:' %><br />
+    <%= form.label :date_init, 'Fecha de inicio:' %><br />
     <%= form.date_field :date_init %>
   </p>
 
   <p>
-    <%= form.label :date_end, 'Finaliza:' %><br />
+    <%= form.label :date_end, 'Fecha de finalización:' %><br />
     <%= form.date_field :date_end %>
   </p>
 

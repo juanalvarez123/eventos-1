@@ -2,6 +2,10 @@
 
 <%= form_with scope: :user, url: login_path, local: true do |form| %>
 
+  <% if !@errorMessage.blank? %>
+    <h2 style="color: red"><%= @errorMessage %></h2>
+  <% end %>
+
   <p>
     <%= form.label :email, 'Correo electrónico:' %><br />
     <%= form.email_field :email %>

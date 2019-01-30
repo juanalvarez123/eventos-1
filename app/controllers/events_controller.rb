@@ -16,6 +16,7 @@ class EventsController < ApplicationController
     if session[:current_user_id]
       @categories = @@categories
       @types = @@types
+      @event = Event.new
     else
       redirect_to login_path
     end
@@ -25,8 +26,13 @@ class EventsController < ApplicationController
     if session[:current_user_id]
       @event = Event.new(eventParameters)
       @event.user_id = session[:current_user_id]
-      @event.save
-      redirect_to @event
+      if @event.save
+        redirect_to @event
+      else
+        @categories = @@categories
+        @types = @@types
+        render 'new'
+      end
     else
       redirect_to login_path
     end
@@ -52,8 +58,13 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
-    @event.update(eventParameters)
-    redirect_to @event
+    if @event.update(eventParameters)
+      redirect_to @event
+    else
+      @categories = @@categories
+      @types = @@types
+      render 'edit'
+    end
   end
 
   def destroy

@@ -2,6 +2,19 @@
 
 <%= form_with scope: :user, url: signin_path, local: true do |form| %>
 
+  <% if @user.errors.any? %>
+    <div id="error_explanation" style="color: red">
+      <h2>
+        Hay <%= @user.errors.count %> <%= @user.errors.count.equal?(1) ? "error" : "errores" %> en el formulario:
+      </h2>
+      <ul>
+        <% @user.errors.messages.each do |attr, msg| %>
+          <li><%= msg[0] %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <p>
     <%= form.label :name, 'Nombre:' %><br />
     <%= form.text_field :name %>

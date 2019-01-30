@@ -11,6 +11,7 @@ class SessionsController < ApplicationController
       session[:current_user_id] = user.id
       redirect_to events_path
     else
+      @errorMessage = "El correo electrónico o contraseña son inválidos"
       render 'new'
     end
   end
