@@ -1,24 +1,40 @@
-# README
+# Events application
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a small application to manage events and user's login/registration.
 
-Things you may want to cover:
+## Assumptions
 
-* Ruby version
+This application was created using:
 
-* System dependencies
+* Ruby 2.5.3
+* Rails 5.2.2
+* Ubuntu 18.4 
 
-* Configuration
+## Prerequisites
 
-* Database creation
+1) Install Ruby and Rails, follow this [link](https://gorails.com/setup/ubuntu/18.04).
+2) Install GIT, follow this [link](https://www.liquidweb.com/kb/install-git-ubuntu-16-04-lts/)
 
-* Database initialization
+## Instructions
 
-* How to run the test suite
+1) Go to `bin/` folder.
 
-* Services (job queues, cache servers, search engines, etc.)
+2) Crerate database model:
 
-* Deployment instructions
+```bash
+rails db:migrate
+```
 
-* ...
+3) Run the server:
+
+```bash
+rails server
+```
+
+4) Go to your favorite web browser and type:
+
+```bash
+http://localhost:3000/
+```
+
+5) Enjoy.
